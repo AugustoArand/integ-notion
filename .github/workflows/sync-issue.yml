@@ -1,0 +1,28 @@
+name: Sync Issue to Notion
+
+on:
+  issues:
+    types: [opened, edited, closed, reopened, labeled, unlabeled, assigned, unassigned]
+
+jobs:
+  sync-to-notion:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Sync Issue to Notion
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID_ISSUES: ${{ secrets.NOTION_DATABASE_ID_ISSUES }}
+          ISSUE_DATA: ${{ toJson(github.event.issue) }}
+        run: npm run sync-issue

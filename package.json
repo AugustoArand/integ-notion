@@ -1,0 +1,21 @@
+{
+  "name": "notion-github-integration",
+  "version": "1.0.0",
+  "description": "Integração entre GitHub e Notion para gestão de conhecimento",
+  "main": "index.js",
+  "scripts": {
+    "sync-pr": "node scripts/sync-pr-to-notion.js",
+    "sync-issue": "node scripts/sync-issue-to-notion.js",
+    "view-db": "node scripts/view-database.js",
+    "test-db": "node scripts/test-database.js"
+  },
+  "keywords": ["notion", "github", "integration", "knowledge-management"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@notionhq/client": "^2.2.14",
+    "@actions/core": "^1.10.1",
+    "@actions/github": "^6.0.0",
+    "sqlite3": "^5.1.7"
+  }
+}
